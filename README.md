@@ -23,9 +23,9 @@ func main(){
     local.get $y
     i32.add)
     (export "sum" (func $sum_f)))`)
+    
     vm.GlobalObject().Set("wasmbytes",vm.ToValue(vm.NewArrayBuffer(wasmbytes)))
   
-    
     vm.RunString(`
         instance = WebAssembly.instantiate(wasmbytes)
         instance.exports.sum(3,4)
