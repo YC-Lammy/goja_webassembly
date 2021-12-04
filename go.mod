@@ -1,4 +1,4 @@
-module github.com/YC-Lammy/goja-webassembly
+module github.com/YC-Lammy/goja_webassembly
 
 go 1.16
 
