@@ -485,7 +485,11 @@ func (in *InstanceExports) Get(key string) goja.Value {
 
 	table := val.IntoTable()
 	if table != nil {
-		table.Size()
+		arg := in.vm.NewObject()
+		o, _ := in.vm.New(in.vm.GlobalObject().Get("WebAssembly").(*goja.Object).Get("Table"), arg)
+		t := o.Export().(*WasmTable)
+		t.table = table
+		return o
 	}
 
 	return goja.Undefined()
