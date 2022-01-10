@@ -354,7 +354,9 @@ func (w *WasmInstance) Get(key string) goja.Value {
 	return goja.Undefined()
 }
 
-func (w *WasmInstance) Set(key string, val goja.Value) bool
+func (w *WasmInstance) Set(key string, val goja.Value) bool {
+	return false
+}
 
 func (w *WasmInstance) Delete(key string) bool {
 	return false
@@ -704,6 +706,11 @@ type WasmTable struct {
 
 func (w *WasmTable) Get(key string) goja.Value {
 	switch key {
+	case "length":
+		if w.table != nil {
+			return w.vm.ToValue(int(w.table.Size()))
+		}
+
 	}
 	return goja.Undefined()
 }
